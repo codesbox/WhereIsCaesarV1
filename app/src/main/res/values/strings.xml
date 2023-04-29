@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">WhereIsCaesar</string>
+    <string name="карта">Карта</string>
+    <string name="поиск">Поиск</string>
+    <string name="профиль">Профиль</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -5,8 +5,13 @@ plugins {
 }
 
 android {
+    apply plugin: 'dagger.hilt.android.plugin'
     namespace 'com.example.whereiscaesar'
     compileSdk 33
+
+    buildFeatures {
+        viewBinding true
+    }
 
     defaultConfig {
         applicationId "com.example.whereiscaesar"
@@ -31,9 +36,18 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'androidx.navigation:navigation-ui:2.5.3'
+    implementation 'androidx.fragment:fragment:1.5.7'
     implementation project(path: ":domain")
     implementation project(path: ":data")
     implementation platform('com.google.firebase:firebase-bom:31.3.0')
+    implementation 'com.google.dagger:hilt-android:2.45'
+    annotationProcessor 'com.google.dagger:hilt-compiler:2.45'
+    androidTestImplementation  'com.google.dagger:hilt-android-testing:2.45'
+    androidTestAnnotationProcessor 'com.google.dagger:hilt-compiler:2.45'
+    testImplementation 'com.google.dagger:hilt-android-testing:2.45'
+    testAnnotationProcessor 'com.google.dagger:hilt-compiler:2.45'
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
