@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/tabsFragment"
-        android:name="com.example.whereiscaesar.presentation.ui.TabsFragment"
+        android:name="com.example.whereiscaesar.presentation.ui.fragments.TabsFragment"
         android:label="fragment_tabs"
         tools:layout="@layout/fragment_tabs" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchBoxFragment"
-        android:name="com.example.whereiscaesar.presentation.ui.SearchBoxFragment"
+        android:name="com.example.whereiscaesar.presentation.ui.fragments.SearchBoxFragment"
         android:label="fragment_search_box"
         tools:layout="@layout/fragment_search_box" />
 </navigation>

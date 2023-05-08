@@ -1,4 +1,4 @@
-package com.example.whereiscaesar.presentation.ui;
+package com.example.whereiscaesar.presentation.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -23,11 +23,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-//        NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView);
-//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-//        NavigationUI.setupWithNavController(bottomNavigationView, navController);
-
 
     }
 }

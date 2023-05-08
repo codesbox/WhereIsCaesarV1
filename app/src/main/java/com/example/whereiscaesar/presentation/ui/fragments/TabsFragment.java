@@ -1,4 +1,4 @@
-package com.example.whereiscaesar.presentation.ui;
+package com.example.whereiscaesar.presentation.ui.fragments;
 
 import android.os.Bundle;
 
@@ -25,6 +25,7 @@ public class TabsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_tabs, container, false);
     }
 
@@ -32,6 +33,7 @@ public class TabsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FragmentTabsBinding binding = FragmentTabsBinding.bind(view);
+
         NavHost navHost = (NavHostFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerView);
         NavController navController = navHost.getNavController();
         NavigationUI.setupWithNavController(binding.bottomNavMenu, navController);
