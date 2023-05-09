@@ -1,5 +1,7 @@
 package com.example.domain.models;
 
+import javax.inject.Inject;
+
 public class CategoryOrDishModelDomain {
 
     public String title, imageUrl;

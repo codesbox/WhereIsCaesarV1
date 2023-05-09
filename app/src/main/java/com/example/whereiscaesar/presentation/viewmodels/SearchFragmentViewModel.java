@@ -11,7 +11,7 @@ import com.example.domain.listener.CategoryAndDishListener;
 import com.example.domain.models.CategoryOrDishModelDomain;
 import com.example.domain.repository.CategoryOrDishRepository;
 import com.example.domain.useCase.GetCategoryAndDishUseCase;
-import com.example.whereiscaesar.presentation.ui.recycler.MyAdapter;
+import com.example.whereiscaesar.presentation.util.CategoryAndDishListenerImpl;
 
 import java.util.List;
 
@@ -19,17 +19,14 @@ public class SearchFragmentViewModel extends ViewModel {
 
     CategoryOrDishRepository categoryOrDishRepository;
     GetCategoryAndDishUseCase getCategoryAndDishUseCase;
+    CategoryAndDishListener categoryAndDishListener;
 
 
     public SearchFragmentViewModel(){
         CategoryOrDishStorage categoryOrDishStorage = new CategoryOrDishStorageImpl();
         categoryOrDishRepository = new CategoryOrDishRepositoryImpl(categoryOrDishStorage);
-        getCategoryAndDishUseCase = new GetCategoryAndDishUseCase(categoryOrDishRepository, new CategoryAndDishListener() {
-            @Override
-            public void getCategoryAndDish(List<CategoryOrDishModelDomain> categoryOrDishModelDomainList) {
-                categoryOrDishModelDomain.setValue(categoryOrDishModelDomainList);
-            }
-        });
+        categoryAndDishListener = new CategoryAndDishListenerImpl(categoryOrDishModelDomain);
+        getCategoryAndDishUseCase = new GetCategoryAndDishUseCase(categoryOrDishRepository, categoryAndDishListener);
         getCategoryAndDishUseCase.execute();
     }
     MutableLiveData<List<CategoryOrDishModelDomain>> categoryOrDishModelDomain = new MutableLiveData<>();

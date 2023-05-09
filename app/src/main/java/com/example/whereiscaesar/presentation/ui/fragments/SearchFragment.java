@@ -11,18 +11,11 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.data.repository.CategoryOrDishRepositoryImpl;
-import com.example.data.storage.CategoryOrDishStorage;
-import com.example.data.storage.firebase.CategoryOrDishStorageImpl;
-import com.example.domain.listener.CategoryAndDishListener;
 import com.example.domain.models.CategoryOrDishModelDomain;
-import com.example.domain.repository.CategoryOrDishRepository;
-import com.example.domain.useCase.GetCategoryAndDishUseCase;
 import com.example.whereiscaesar.R;
 import com.example.whereiscaesar.databinding.FragmentSearchBinding;
 import com.example.whereiscaesar.presentation.ui.recycler.MyAdapter;
@@ -30,9 +23,16 @@ import com.example.whereiscaesar.presentation.viewmodels.SearchFragmentViewModel
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+
 public class SearchFragment extends Fragment {
 
     private MyAdapter adapter;
+
+
     private SearchFragmentViewModel viewModel;
 
     @Override
@@ -53,7 +53,12 @@ public class SearchFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         viewModel = new ViewModelProvider(this).get(SearchFragmentViewModel.class);
-        viewModel.getItems().observe(getViewLifecycleOwner(), categoryOrDishModelDomains -> adapter.setItemList(categoryOrDishModelDomains));
+        viewModel.getItems().observe(getViewLifecycleOwner(), new Observer<List<CategoryOrDishModelDomain>>() {
+            @Override
+            public void onChanged(List<CategoryOrDishModelDomain> categoryOrDishModelDomains) {
+                adapter.setItemList(categoryOrDishModelDomains);
+            }
+        });
 
 
 
