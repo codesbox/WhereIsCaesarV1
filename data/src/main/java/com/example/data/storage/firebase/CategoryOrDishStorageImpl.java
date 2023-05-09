@@ -16,9 +16,10 @@ import java.util.List;
 
 public class CategoryOrDishStorageImpl implements CategoryOrDishStorage {
 
-    private final String TITLE = "title";
+
+
     private final String IMAGE_URL = "image";
-    private final String IS_CATEGORY = "IsCategory";
+    private final String IS_CATEGORY = "isc";
 
 
 
@@ -37,7 +38,7 @@ public class CategoryOrDishStorageImpl implements CategoryOrDishStorage {
 
                 for (DocumentSnapshot document : documents){
                     documentsList.add(new CategoryOrDishModel(
-                        document.getString(TITLE), document.getString(IMAGE_URL), document.getBoolean(IS_CATEGORY)));
+                        document.getId(), document.getString(IMAGE_URL), document.getBoolean(IS_CATEGORY)));
                 }
 
                 List<CategoryOrDishModelDomain> categoryOrDishModelDomainList = new ArrayList<>();

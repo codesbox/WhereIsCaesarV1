@@ -13,10 +13,28 @@
         <action
             android:id="@+id/action_tabsFragment_to_searchBoxFragment"
             app:destination="@id/searchBoxFragment" />
+        <action
+            android:id="@+id/action_tabsFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchBoxFragment"
         android:name="com.example.whereiscaesar.presentation.ui.fragments.SearchBoxFragment"
         android:label="fragment_search_box"
         tools:layout="@layout/fragment_search_box" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.whereiscaesar.presentation.ui.fragments.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" >
+        <argument
+            android:name="CategoryName"
+            app:argType="string" />
+        <argument
+            android:name="ImageUrl"
+            app:argType="string" />
+        <argument
+            android:name="IsCategory"
+            app:argType="boolean" />
+    </fragment>
 </navigation>

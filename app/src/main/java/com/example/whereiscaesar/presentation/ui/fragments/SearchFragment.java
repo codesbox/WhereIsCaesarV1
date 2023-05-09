@@ -19,6 +19,7 @@ import com.example.domain.models.CategoryOrDishModelDomain;
 import com.example.whereiscaesar.R;
 import com.example.whereiscaesar.databinding.FragmentSearchBinding;
 import com.example.whereiscaesar.presentation.ui.recycler.MyAdapter;
+import com.example.whereiscaesar.presentation.util.CardClickListener;
 import com.example.whereiscaesar.presentation.viewmodels.SearchFragmentViewModel;
 
 import java.util.List;
@@ -31,6 +32,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class SearchFragment extends Fragment {
 
     private MyAdapter adapter;
+    private CardClickListener listener;
 
 
     private SearchFragmentViewModel viewModel;
@@ -46,8 +48,17 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FragmentSearchBinding binding = FragmentSearchBinding.bind(view);
-
-        adapter = new MyAdapter(getContext());
+        listener = new CardClickListener() {
+            @Override
+            public void onCardClick(CategoryOrDishModelDomain categoryOrDishModelDomain) {
+                Bundle bundle = new Bundle();
+                bundle.putString("categoryName", categoryOrDishModelDomain.title);
+                bundle.putString("imageUrl", categoryOrDishModelDomain.imageUrl);
+                bundle.putBoolean("isCategory", categoryOrDishModelDomain.isCategory);
+                Navigation.findNavController(requireActivity(), R.id.fragmentContainerView).navigate(R.id.categoryFragment, bundle);
+            }
+        };
+        adapter = new MyAdapter(getContext(), listener);
         RecyclerView recyclerView = binding.recyclerview;
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

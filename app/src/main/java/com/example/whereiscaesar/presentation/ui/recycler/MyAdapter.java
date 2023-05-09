@@ -12,15 +12,18 @@ import com.bumptech.glide.Glide;
 import com.example.domain.models.CategoryOrDishModelDomain;
 import com.example.whereiscaesar.R;
 import com.example.whereiscaesar.databinding.SearchMainfargmentItemBinding;
+import com.example.whereiscaesar.presentation.util.CardClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private android.content.Context context;
+    CardClickListener listener;
     private List<CategoryOrDishModelDomain> itemList = new ArrayList<>();
-    public MyAdapter(android.content.Context context) {
+    public MyAdapter(android.content.Context context, CardClickListener listener) {
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -28,7 +31,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         SearchMainfargmentItemBinding binding = SearchMainfargmentItemBinding.inflate(inflater);
-        return new ViewHolder(binding, context);
+        return new ViewHolder(binding, context, listener);
     }
 
     @Override
@@ -52,10 +55,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private final SearchMainfargmentItemBinding binding;
         private android.content.Context context;
-        public ViewHolder(SearchMainfargmentItemBinding binding, android.content.Context context) {
+        private CardClickListener listener;
+        public ViewHolder(SearchMainfargmentItemBinding binding, android.content.Context context, CardClickListener listener) {
             super(binding.getRoot());
             this.binding = binding;
             this.context = context;
+            this.listener = listener;
         }
         public void bind(CategoryOrDishModelDomain categoryOrDishModelDomain){
             binding.name.setText(categoryOrDishModelDomain.title);
@@ -63,6 +68,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                     .load(categoryOrDishModelDomain.imageUrl)
                     .error(R.drawable.image_not_supported)
                     .into(binding.imageView);
+            binding.cardView.setOnClickListener(v -> {listener.onCardClick(categoryOrDishModelDomain);});
         }
     }
 }

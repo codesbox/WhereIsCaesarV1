@@ -8,4 +8,7 @@
     <string name="нет_выбранных_блюд">Нет выбранных блюд</string>
     <string name="категории">Категории</string>
     <string name="название_категории">Название категории</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="отмена">Отмена</string>
 </resources>

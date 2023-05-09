@@ -22,8 +22,22 @@ import dagger.hilt.components.SingletonComponent;
 @Module
 @InstallIn(SingletonComponent.class)
 public class DataModule {
+    @Provides
+    @Singleton
+    public static CategoryOrDishStorage provideCategoryOrDishStorage(){
+        return new CategoryOrDishStorageImpl();
+    }
 
-
+    @Provides
+    @Singleton
+    public static CategoryOrDishRepository provideCategoryOrDishRepository(CategoryOrDishStorage categoryOrDishStorage){
+        return new CategoryOrDishRepositoryImpl(categoryOrDishStorage);
+    }
+    @Provides
+    @Singleton
+    public static CategoryAndDishListener provideCategoryAndDishListener(MutableLiveData<List<CategoryOrDishModelDomain>> mutableLiveData){
+        return new CategoryAndDishListenerImpl(mutableLiveData);
+    }
 
 
 
