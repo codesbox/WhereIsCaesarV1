@@ -15,8 +15,8 @@ public class CategoryOrDishRepositoryImpl implements CategoryOrDishRepository {
     }
 
     @Override
-    public void GetCategoryOrDish(String collection, CategoryAndDishListener listener) {
-        categoryOrDishStorage.GetCategoryOrDish(collection, listener);
+    public void GetCategoryOrDish(String tag, CategoryAndDishListener listener) {
+        categoryOrDishStorage.GetCategoryOrDish(tag, listener);
     }
 
 }

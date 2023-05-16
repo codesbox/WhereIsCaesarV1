@@ -9,10 +9,13 @@ import com.example.domain.listener.CategoryAndDishListener;
 import com.example.domain.models.CategoryOrDishModelDomain;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class CategoryOrDishStorageImpl implements CategoryOrDishStorage {
 
@@ -20,18 +23,23 @@ public class CategoryOrDishStorageImpl implements CategoryOrDishStorage {
 
     private final String IMAGE_URL = "image";
     private final String IS_CATEGORY = "isc";
+    private final String MAIN_TAG = "maintag";
+    private final String COLLECTION = "Категории и блюда";
 
 
 
     @Override
-    public void GetCategoryOrDish(String collection, CategoryAndDishListener listener) {
+    public void GetCategoryOrDish(String tag, CategoryAndDishListener listener) {
+        String myValue = "main";
 
         List<CategoryOrDishModel> documentsList = new ArrayList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference collectionRef = db.collection(collection);
+        CollectionReference collectionRef = db.collection(COLLECTION);
+
+        Query query = collectionRef.whereEqualTo(MAIN_TAG, tag);
 
 
-        collectionRef.get().addOnCompleteListener(task -> {
+        query.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()){
 
                 List<DocumentSnapshot> documents = task.getResult().getDocuments();

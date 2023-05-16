@@ -9,13 +9,15 @@ public class GetCategoryAndDishUseCase {
 
     CategoryOrDishRepository categoryOrDishRepository;
     CategoryAndDishListener listener;
+    String tag;
 
 
-    public GetCategoryAndDishUseCase(CategoryOrDishRepository categoryOrDishRepository, CategoryAndDishListener listener){
+    public GetCategoryAndDishUseCase(CategoryOrDishRepository categoryOrDishRepository, CategoryAndDishListener listener, String tag){
         this.categoryOrDishRepository = categoryOrDishRepository;
         this.listener = listener;
+        this.tag = tag;
     }
     public void execute(){
-         categoryOrDishRepository.GetCategoryOrDish("Категории и блюда", listener);
+         categoryOrDishRepository.GetCategoryOrDish(tag, listener);
     }
 }

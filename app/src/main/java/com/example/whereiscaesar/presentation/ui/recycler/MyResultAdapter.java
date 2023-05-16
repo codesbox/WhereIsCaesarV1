@@ -1,6 +1,5 @@
 package com.example.whereiscaesar.presentation.ui.recycler;
 
-
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -12,30 +11,32 @@ import com.bumptech.glide.Glide;
 import com.example.domain.models.CategoryOrDishModelDomain;
 import com.example.whereiscaesar.R;
 import com.example.whereiscaesar.databinding.SearchMainfargmentItemBinding;
+import com.example.whereiscaesar.databinding.SearchMainfragmentResultItemBinding;
 import com.example.whereiscaesar.presentation.util.CardClickListener;
+import com.example.whereiscaesar.presentation.util.ResultCardClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyResultAdapter extends RecyclerView.Adapter<MyResultAdapter.ViewHolder> {
     private android.content.Context context;
-    CardClickListener listener;
+    ResultCardClickListener listener;
     private List<CategoryOrDishModelDomain> itemList = new ArrayList<>();
-    public MyAdapter(android.content.Context context, CardClickListener listener) {
+    public MyResultAdapter(android.content.Context context, ResultCardClickListener listener) {
         this.context = context;
         this.listener = listener;
     }
 
     @NonNull
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyResultAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        SearchMainfargmentItemBinding binding = SearchMainfargmentItemBinding.inflate(inflater);
+        SearchMainfragmentResultItemBinding binding = SearchMainfragmentResultItemBinding.inflate(inflater);
         return new ViewHolder(binding, context, listener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyResultAdapter.ViewHolder holder, int position) {
         holder.bind(itemList.get(position));
 
     }
@@ -51,13 +52,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         this.itemList = categoryOrDishModelDomainList;
         notifyDataSetChanged();
     }
+    public void deleteItem(CategoryOrDishModelDomain categoryOrDishModelDomain){
+        int index = itemList.indexOf(categoryOrDishModelDomain);
+        if (index != -1){
+            itemList.remove(index);
+            notifyItemRemoved(index);
+        }
+    }
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        private final SearchMainfargmentItemBinding binding;
+        private final SearchMainfragmentResultItemBinding binding;
         private android.content.Context context;
-        private CardClickListener listener;
-        public ViewHolder(SearchMainfargmentItemBinding binding, android.content.Context context, CardClickListener listener) {
+        private ResultCardClickListener listener;
+        public ViewHolder(SearchMainfragmentResultItemBinding binding, android.content.Context context, ResultCardClickListener listener) {
             super(binding.getRoot());
             this.binding = binding;
             this.context = context;
@@ -69,7 +77,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                     .load(categoryOrDishModelDomain.imageUrl)
                     .error(R.drawable.image_not_supported)
                     .into(binding.imageView);
-            binding.cardView.setOnClickListener(v -> {listener.onCardClick(categoryOrDishModelDomain);});
+            binding.deleteBut.setOnClickListener(v -> listener.onButtonClick(categoryOrDishModelDomain));
         }
     }
 }

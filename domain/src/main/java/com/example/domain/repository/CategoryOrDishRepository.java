@@ -4,5 +4,5 @@ import com.example.domain.listener.CategoryAndDishListener;
 
 public interface CategoryOrDishRepository {
 
-    void GetCategoryOrDish(String collection, CategoryAndDishListener listener);
+    void GetCategoryOrDish(String tag, CategoryAndDishListener listener);
 }

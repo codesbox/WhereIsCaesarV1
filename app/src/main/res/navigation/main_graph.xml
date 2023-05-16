@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_tabsFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_tabsFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchBoxFragment"
@@ -37,4 +40,9 @@
             android:name="IsCategory"
             app:argType="boolean" />
     </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.whereiscaesar.presentation.ui.fragments.accountFragments.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>

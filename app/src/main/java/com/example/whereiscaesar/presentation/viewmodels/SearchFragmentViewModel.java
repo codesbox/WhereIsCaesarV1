@@ -1,5 +1,7 @@
 package com.example.whereiscaesar.presentation.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -17,24 +19,25 @@ import java.util.List;
 
 public class SearchFragmentViewModel extends ViewModel {
 
-    CategoryOrDishRepository categoryOrDishRepository;
-    GetCategoryAndDishUseCase getCategoryAndDishUseCase;
-    CategoryAndDishListener categoryAndDishListener;
+    MutableLiveData<List<CategoryOrDishModelDomain>> mutableLiveData;
+    List<CategoryOrDishModelDomain> categoryOrDishModelDomainList;
 
 
-    public SearchFragmentViewModel(){
-        CategoryOrDishStorage categoryOrDishStorage = new CategoryOrDishStorageImpl();
-        categoryOrDishRepository = new CategoryOrDishRepositoryImpl(categoryOrDishStorage);
-        categoryAndDishListener = new CategoryAndDishListenerImpl(categoryOrDishModelDomain);
-        getCategoryAndDishUseCase = new GetCategoryAndDishUseCase(categoryOrDishRepository, categoryAndDishListener);
+
+    public SearchFragmentViewModel(GetCategoryAndDishUseCase getCategoryAndDishUseCase,
+                                   MutableLiveData<List<CategoryOrDishModelDomain>> mutableLiveData,
+                                   List<CategoryOrDishModelDomain> categoryOrDishModelDomainList){
+        this.mutableLiveData = mutableLiveData;
+        this.categoryOrDishModelDomainList = categoryOrDishModelDomainList;
         getCategoryAndDishUseCase.execute();
-    }
-    MutableLiveData<List<CategoryOrDishModelDomain>> categoryOrDishModelDomain = new MutableLiveData<>();
 
-    public LiveData<List<CategoryOrDishModelDomain>> getItems(){
-
-        return categoryOrDishModelDomain;
     }
+
+    public LiveData<List<CategoryOrDishModelDomain>> getCategoryOrDishModelDomain(){
+
+        return mutableLiveData;
+    }
+
 
 
 
