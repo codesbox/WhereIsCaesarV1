@@ -26,6 +26,8 @@ import com.example.whereiscaesar.presentation.viewmodels.SearchFragmentViewModel
 import com.example.whereiscaesar.presentation.viewmodels.SearchFragmentViewModelFactory;
 import com.example.whereiscaesar.presentation.viewmodels.SharedViewModel;
 
+import java.util.List;
+
 
 public class SearchFragment extends Fragment {
 
@@ -67,12 +69,34 @@ public class SearchFragment extends Fragment {
                 Navigation.findNavController(requireActivity(), R.id.fragmentContainerViewMain).navigate(R.id.categoryFragment, bundle);
             }
 
+            @Override
+            public void progressBarr(List<CategoryOrDishModelDomain> categoryOrDishModelDomainList) {
+                if (categoryOrDishModelDomainList.size() != 0){
+                    binding.progressBar.setVisibility(View.GONE);
+                }
+                else {
+                    binding.progressBar.setVisibility(View.VISIBLE);
+                }
+            }
 
-            };
+
+        };
         resultListener = new ResultCardClickListener() {
             @Override
             public void onButtonClick(CategoryOrDishModelDomain categoryOrDishModelDomain) {
                 resultAdapter.deleteItem(categoryOrDishModelDomain);
+            }
+
+            @Override
+            public void changeVisibility(List<CategoryOrDishModelDomain> categoryOrDishModelDomainList) {
+                if (categoryOrDishModelDomainList.size() == 0){
+                    binding.noDishes.setVisibility(View.VISIBLE);
+                    binding.resultRecyclerview.setVisibility(View.GONE);
+                }
+                else{
+                    binding.noDishes.setVisibility(View.GONE);
+                    binding.resultRecyclerview.setVisibility(View.VISIBLE);
+                }
             }
         };
 
@@ -84,7 +108,8 @@ public class SearchFragment extends Fragment {
         resultAdapter = new MyResultAdapter(getContext(), resultListener);
         RecyclerView resultRecyclerView = binding.resultRecyclerview;
         resultRecyclerView.setAdapter(resultAdapter);
-        resultRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        resultRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
 
         viewModel = new ViewModelProvider(this, new SearchFragmentViewModelFactory()).get(SearchFragmentViewModel.class);
         viewModel.getCategoryOrDishModelDomain().observe(getViewLifecycleOwner(), categoryOrDishModelDomains -> adapter.setItemList(categoryOrDishModelDomains));

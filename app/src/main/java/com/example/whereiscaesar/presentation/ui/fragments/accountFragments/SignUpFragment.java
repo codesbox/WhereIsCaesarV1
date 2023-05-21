@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.whereiscaesar.R;
 import com.example.whereiscaesar.databinding.FragmentSignUpBinding;
@@ -21,6 +22,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpFragment extends Fragment {
 
@@ -39,10 +44,10 @@ public class SignUpFragment extends Fragment {
         FragmentSignUpBinding binding = FragmentSignUpBinding.bind(view);
         mAuth = FirebaseAuth.getInstance();
 
-        binding.button2.setOnClickListener(v -> {
+        binding.signUpButton.setOnClickListener(v -> {
 
-            String email = binding.emailSignUp.getText().toString();
-            String password = binding.passwordSignUp.getText().toString();
+            String email = binding.email.getText().toString();
+            String password = binding.password.getText().toString();
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
                         @Override
@@ -50,9 +55,31 @@ public class SignUpFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmail:success");
-                                NavHostFragment.findNavController(SignUpFragment.this).popBackStack();
+
+                                String userId = task.getResult().getUser().getUid();
+                                String firstName = binding.firstName.getText().toString();
+                                String lastName = binding.lastName.getText().toString();
+
+                                Map<String, Object> userData = new HashMap<>();
+                                userData.put("id", userId);
+                                userData.put("firstName", firstName);
+                                userData.put("lastName", firstName);
+                                userData.put("feedbackCount", 0);// Replace with the actual name value
+                                // Add new document to Users collection
+                                FirebaseFirestore.getInstance().collection("Users").document(userId)
+                                        .set(userData)
+                                        .addOnSuccessListener(aVoid -> {
+                                            // Document added successfully
+                                            NavHostFragment.findNavController(SignUpFragment.this).popBackStack();
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            // Error adding document
+                                            Log.e(TAG, "Error adding user document", e);
+                                            Toast.makeText(requireContext(), "Ошибка", Toast.LENGTH_SHORT).show();
+                                        });
+
                             } else {
-                                // If sign in fails, display a message to the user.
+                                Toast.makeText(requireContext(), "Ошибка", Toast.LENGTH_SHORT).show();
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             }
                         }
@@ -61,7 +88,7 @@ public class SignUpFragment extends Fragment {
 
 
         });
-        binding.button4.setOnClickListener(v -> {
+        binding.signInButton.setOnClickListener(v -> {
             NavHostFragment.findNavController(this).popBackStack();
         });
     }

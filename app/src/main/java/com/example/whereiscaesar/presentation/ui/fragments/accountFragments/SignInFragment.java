@@ -47,7 +47,6 @@ public class SignInFragment extends Fragment {
 
             String email = binding.email.getText().toString();
             String password = binding.password.getText().toString();
-            Log.d("QQQQQQQQQQQQQQQQQQQQQ", email.toString());
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
                         @Override
@@ -56,7 +55,7 @@ public class SignInFragment extends Fragment {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                NavHostFragment.findNavController(SignInFragment.this).popBackStack();
+                                NavHostFragment.findNavController(SignInFragment.this).navigate(R.id.action_signInFragment_to_mainAccountFragment);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());

@@ -104,6 +104,16 @@ public class CategoryFragment extends Fragment {
 
             }
 
+            @Override
+            public void progressBarr(List<CategoryOrDishModelDomain> categoryOrDishModelDomainList) {
+                if (categoryOrDishModelDomainList.size() != 0){
+                    binding.progressBar2.setVisibility(View.GONE);
+                }
+                else {
+                    binding.progressBar2.setVisibility(View.VISIBLE);
+                }
+            }
+
 
         };
         adapter = new MyAdapter(getContext(), listener);

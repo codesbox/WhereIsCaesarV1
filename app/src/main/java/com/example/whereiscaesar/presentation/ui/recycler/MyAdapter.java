@@ -49,6 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @SuppressLint("NotifyDataSetChanged")
     public void setItemList(List<CategoryOrDishModelDomain>  categoryOrDishModelDomainList){
         this.itemList = categoryOrDishModelDomainList;
+        listener.progressBarr(categoryOrDishModelDomainList);
         notifyDataSetChanged();
     }
 

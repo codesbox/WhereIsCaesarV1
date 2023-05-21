@@ -17,4 +17,9 @@
     <color name="black_300">#767778</color>
     <color name="black_400">#49494B</color>
     <color name="black_500">#1B1B1E</color>
+    <color name="yellow_100">#FFC776</color>
+    <color name="yellow_200">#FFB449</color>
+    <color name="yellow_300">#FFA11B</color>
+    <color name="yellow_400">#CC8116</color>
+    <color name="yellow_500">#996110</color>
 </resources>

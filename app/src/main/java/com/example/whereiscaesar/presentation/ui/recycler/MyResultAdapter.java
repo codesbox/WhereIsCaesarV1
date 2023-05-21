@@ -50,12 +50,17 @@ public class MyResultAdapter extends RecyclerView.Adapter<MyResultAdapter.ViewHo
     @SuppressLint("NotifyDataSetChanged")
     public void setItemList(List<CategoryOrDishModelDomain>  categoryOrDishModelDomainList){
         this.itemList = categoryOrDishModelDomainList;
+        listener.changeVisibility(categoryOrDishModelDomainList);
         notifyDataSetChanged();
     }
     public void deleteItem(CategoryOrDishModelDomain categoryOrDishModelDomain){
         int index = itemList.indexOf(categoryOrDishModelDomain);
         if (index != -1){
             itemList.remove(index);
+            if (itemList.size() == 0){
+
+            }
+            listener.changeVisibility(itemList);
             notifyItemRemoved(index);
         }
     }

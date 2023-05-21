@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -30,9 +31,13 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         FragmentProfileBinding binding = FragmentProfileBinding.bind(view);
 
-        binding.button5.setOnClickListener(v -> {
-            FirebaseAuth.getInstance().signOut();
-            NavHostFragment.findNavController(this).popBackStack();
-        });
+//        binding.button5.setOnClickListener(v -> {
+//            FirebaseAuth.getInstance().signOut();
+//            NavHostFragment.findNavController(this).navigate(R.id.action_profileFragment_to_mainAccountFragment);
+//        });
+//        binding.addFeedBackButton.setOnClickListener(v -> {
+//            Navigation.findNavController(requireActivity(), R.id.fragmentContainerViewMain).navigate(R.id.feedBackFragment);
+//
+//        });
     }
 }

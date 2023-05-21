@@ -7,11 +7,11 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
-        android:layout_width="match_parent"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginRight="20sp"
-        android:layout_marginTop="10sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="8sp"
+        android:layout_marginTop="8sp"
         app:cardElevation="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,29 +31,29 @@
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.628"
+                app:layout_constraintHorizontal_bias="0.578"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.49" />
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="69dp"
-                android:layout_height="56dp"
+                android:layout_width="57dp"
+                android:layout_height="51dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="28dp"
+                android:layout_marginStart="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.2"
                 app:srcCompat="@drawable/image_not_supported" />
 
             <ImageView
                 android:id="@+id/delete_but"
-                android:layout_width="41dp"
-                android:layout_height="36dp"
+                android:layout_width="32dp"
+                android:layout_height="29dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
