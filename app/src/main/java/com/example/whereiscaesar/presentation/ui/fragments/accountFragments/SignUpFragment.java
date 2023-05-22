@@ -63,7 +63,7 @@ public class SignUpFragment extends Fragment {
                                 Map<String, Object> userData = new HashMap<>();
                                 userData.put("id", userId);
                                 userData.put("firstName", firstName);
-                                userData.put("lastName", firstName);
+                                userData.put("lastName", lastName);
                                 userData.put("feedbackCount", 0);// Replace with the actual name value
                                 // Add new document to Users collection
                                 FirebaseFirestore.getInstance().collection("Users").document(userId)
