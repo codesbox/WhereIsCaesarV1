@@ -40,6 +40,13 @@ public class MyResultAdapter extends RecyclerView.Adapter<MyResultAdapter.ViewHo
         holder.bind(itemList.get(position));
 
     }
+    public ArrayList<String> getDishes(){
+        ArrayList<String> dishList = new ArrayList<>();
+        for (CategoryOrDishModelDomain categoryOrDishModelDomain : itemList){
+            dishList.add(categoryOrDishModelDomain.title);
+        }
+        return dishList;
+    }
 
     @Override
     public int getItemCount() {

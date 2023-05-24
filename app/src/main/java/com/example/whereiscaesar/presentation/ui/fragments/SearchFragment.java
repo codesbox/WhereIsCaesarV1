@@ -26,6 +26,7 @@ import com.example.whereiscaesar.presentation.viewmodels.SearchFragmentViewModel
 import com.example.whereiscaesar.presentation.viewmodels.SearchFragmentViewModelFactory;
 import com.example.whereiscaesar.presentation.viewmodels.SharedViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -120,7 +121,11 @@ public class SearchFragment extends Fragment {
 
 
         binding.button3.setOnClickListener(v -> {
-            Navigation.findNavController(requireActivity(), R.id.fragmentContainerViewMain).navigate(R.id.searchBoxFragment);
+            ArrayList<String> dishList = resultAdapter.getDishes();
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList("dishList", dishList);
+            //Navigation.findNavController(requireActivity(), R.id.fragmentContainerViewMain).navigate(R.id.searchBoxFragment);
+            Navigation.findNavController(requireActivity(), R.id.fragmentContainerViewMain).navigate(R.id.action_tabsFragment_to_mapResultFragment, bundle);
         });
     }
 

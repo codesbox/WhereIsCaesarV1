@@ -11,14 +11,14 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="207dp"
-        android:layout_height="17dp"
+        android:layout_width="256dp"
+        android:layout_height="21dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
-        android:text="Какой-то адрес"
+        android:text="197262 937251"
         android:textColor="@color/black_300"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintHorizontal_bias="0.088"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -41,8 +41,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/rectangle_4124"
-        android:paddingLeft="16dp"
-        android:paddingTop="7dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="6dp"
         android:text="7"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -75,11 +75,12 @@
         android:id="@+id/feedBackCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:text="Оценок: 10000"
         android:textColor="@color/black_500"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,7 +88,7 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:background="@color/black_100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -111,6 +112,47 @@
             app:layout_constraintTop_toBottomOf="@+id/frameLayout"
             tools:layout_editor_absoluteX="0dp">
 
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="370sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="20sp"
+                app:cardBackgroundColor="@color/blue_300">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/выбранные_блюда"
+                        android:textColor="@color/white"
+                        android:textSize="32sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.505"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/selectedRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.438"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginBottom="20sp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
 
 
@@ -165,17 +207,17 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView4" >
                     </androidx.recyclerview.widget.RecyclerView>
                     <TextView
-                    android:id="@+id/hotDish"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Горячие блюда"
-                    android:textColor="@color/black_400"
-                    android:textSize="25sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.173"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+                        android:id="@+id/hotDish"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Горячие блюда"
+                        android:textColor="@color/black_400"
+                        android:textSize="25sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.173"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/hotDishRecyclerView"
@@ -266,9 +308,3 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-

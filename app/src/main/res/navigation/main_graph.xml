@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_tabsFragment_to_myFeedbacksFragment"
             app:destination="@id/myFeedbacksFragment" />
+        <action
+            android:id="@+id/action_tabsFragment_to_mapResultFragment"
+            app:destination="@id/mapResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchBoxFragment"
@@ -61,4 +64,9 @@
         android:name="com.example.whereiscaesar.presentation.ui.fragments.accountFragments.MyFeedbacksFragment"
         android:label="fragment_my_feedbacks"
         tools:layout="@layout/fragment_my_feedbacks" />
+    <fragment
+        android:id="@+id/mapResultFragment"
+        android:name="com.example.whereiscaesar.presentation.ui.fragments.MapResultFragment"
+        android:label="fragment_map_result"
+        tools:layout="@layout/fragment_map_result" />
 </navigation>
